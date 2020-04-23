@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.tjeit.pizzastoreapp_20200422.adapters.StoreAdapter
 import kr.tjeit.pizzastoreapp_20200422.datas.Store
