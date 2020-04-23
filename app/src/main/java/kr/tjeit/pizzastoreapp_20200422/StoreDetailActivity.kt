@@ -1,8 +1,13 @@
 package kr.tjeit.pizzastoreapp_20200422
 
+import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_store_detail.*
 import kr.tjeit.pizzastoreapp_20200422.datas.Store
 
@@ -18,6 +23,31 @@ class StoreDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+
+        callToStoreBtn.setOnClickListener {
+//            it 변수 활용 예시
+//            it.visibility = View.GONE
+
+            val pl = object : PermissionListener {
+                override fun onPermissionGranted() {
+
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    Toast.makeText(mContext, "통화 권한을 허가해줘야 사용가능합니다.", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            TedPermission.with(mContext)
+                .setPermissionListener(pl)
+                .setDeniedMessage("통화 권한 설정을 해야 사용 가능합니다. [설정] 에서 권한을 넣어주세요.")
+                .setPermissions(Manifest.permission.CALL_PHONE)
+                .check()
+
+
+        }
 
     }
 
