@@ -1,6 +1,8 @@
 package kr.tjeit.pizzastoreapp_20200422
 
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,6 +33,10 @@ class StoreDetailActivity : BaseActivity() {
 
             val pl = object : PermissionListener {
                 override fun onPermissionGranted() {
+
+                    val storeCallUri = Uri.parse("tel:${storeData.phoneNum}")
+                    val myIntent = Intent(Intent.ACTION_CALL, storeCallUri)
+                    startActivity(myIntent)
 
                 }
 
